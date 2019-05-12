@@ -267,7 +267,97 @@ Second Query Example:
 {"number": "141", "text": " carta-bomba kiesbauer encontrar información explosión carta-bomba estudio presentadora canal televisión pro7 arabella kiesbauer"},{"number": "141", "text": "Carta-bomba para Kiesbauer  Encontrar información sobre la explosión de una carta-bomba en el estudio de la presentadora del canal de televisión PRO7 Arabella Kiesbauer. "},
 ```
 
+#### Improving Results
 
+As an additional task was requested to improve our results using some techniques learned in class as stemming, retrieve relevant information, consulting expansion, different rankings algorithm, etc. 
+In my case, stemming wasn't showed better results, due to the lack of Spanish implementation in Galago.
+
+So my actions to improve the results were these ones:
+
+**1 - Change the Ranking algorithm to BM25.**
+This change improved the ranking results in a huge way. Before this, using the Galago's default ranking algorithm, my scores were in -3.000 and now my first results are showing more than 8.500.
+
+**2 -  Removing Stopwords from the query.**
+On my first execution of the query "Carta-Bomba para Kiesbauer", the first file returned was the one who had the most occurrences of "para" word. What makes me believe that Galago wasn't recognizing the word "para" as a stopword.
+So for the next execution, I've removed via script all Spanish stopwords, and the results improved very well. For the first consult, from 13 relevant my search was able to find 12.
+
+**3 - Consulting Expansion.**
+Different from the first attempt, instead use only "title" at the query, this time I add the field "desc" to the query.
+
+I evaluate both runs, using the trec_eval software available at https://trec.nist.gov/trec_eval/ and these are the results
+
+```
+First Result
+brunetto@jolesnote:~/Documentos/IR/trec_eval.8.1/test$ ./../trec_eval  qrels.txt trec_eval_jonas_index2_all_fields_no_stem 
+num_q          	all	55
+num_ret        	all	5500
+num_rel        	all	2270
+num_rel_ret    	all	179
+map            	all	0.0249
+gm_ap          	all	0.0002
+R-prec         	all	0.0266
+bpref          	all	0.1345
+recip_rank     	all	0.1193
+ircl_prn.0.00  	all	0.1252
+ircl_prn.0.10  	all	0.0794
+ircl_prn.0.20  	all	0.0436
+ircl_prn.0.30  	all	0.0205
+ircl_prn.0.40  	all	0.0158
+ircl_prn.0.50  	all	0.0136
+ircl_prn.0.60  	all	0.0116
+ircl_prn.0.70  	all	0.0090
+ircl_prn.0.80  	all	0.0090
+ircl_prn.0.90  	all	0.0090
+ircl_prn.1.00  	all	0.0090
+P5             	all	0.0545
+P10            	all	0.0455
+P15            	all	0.0448
+P20            	all	0.0427
+P30            	all	0.0382
+P100           	all	0.0325
+P200           	all	0.0163
+P500           	all	0.0065
+P1000          	all	0.0033
+``` 
+
+```
+Second Result
+brunetto@jolesnote:~/Documentos/IR/trec_eval.8.1/test$ ./../trec_eval  qrels.txt trec_eval_jonas_python.txt 
+num_q          	all	57
+num_ret        	all	5700
+num_rel        	all	2368
+num_rel_ret    	all	877
+map            	all	0.2247
+gm_ap          	all	0.0631
+R-prec         	all	0.2778
+bpref          	all	0.4657
+recip_rank     	all	0.5594
+ircl_prn.0.00  	all	0.6191
+ircl_prn.0.10  	all	0.5024
+ircl_prn.0.20  	all	0.4080
+ircl_prn.0.30  	all	0.3222
+ircl_prn.0.40  	all	0.2874
+ircl_prn.0.50  	all	0.2324
+ircl_prn.0.60  	all	0.1737
+ircl_prn.0.70  	all	0.1228
+ircl_prn.0.80  	all	0.0562
+ircl_prn.0.90  	all	0.0282
+ircl_prn.1.00  	all	0.0163
+P5             	all	0.3404
+P10            	all	0.3246
+P15            	all	0.2795
+P20            	all	0.2667
+P30            	all	0.2287
+P100           	all	0.1539
+P200           	all	0.0769
+P500           	all	0.0308
+P1000          	all	0.0154
+
+```
+
+I did a simple chat to ilustrate the difference between the results.  
+
+![](doc/comparation.png)
 
 #### References
 - _https://www.lemurproject.org/galago.php_
@@ -276,3 +366,4 @@ Second Query Example:
 - _https://github.com/jiepujiang/cs646_tutorials_
 - _https://en.wikipedia.org/wiki/Search_engine_indexing_
 - _https://medium.com/@lauradietz100/galago-the-secret-documentation-7e1c1b205dda_
+- _https://trec.nist.gov/trec_eval/_
