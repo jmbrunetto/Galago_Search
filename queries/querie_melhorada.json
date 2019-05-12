@@ -1,0 +1,21 @@
+  {
+     "index" : "/home/brunetto/Documentos/IR/galago-3.14159/IndexFolder/",
+     "processingModel" : "org.lemurproject.galago.core.retrieval.processing.TwoPassDocumentPassageModel",
+     "requested" : 100,
+     "showNoResults" : true,
+     "trec" : true,
+     "casefold" : true,
+     "operatorWrap" : "rm",
+     "queryType" : "complex",
+     "queries" : [	{
+			 "number" : "141",
+		         "text" : "explosión carta bomba estudio presentadora canal televisión pr07 arabella kiesbauer"
+			}
+
+		 ]
+  }
+
+
+
+
+

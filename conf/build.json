@@ -1,0 +1,18 @@
+{
+    "fileType"  : "trectext",
+    "indexPath" : "/home/brunetto/Documentos/IR/galago-3.14159/IndexFolder/",
+    "inputPath" : "/home/brunetto/Documentos/IR/Dados/efe95/",    
+    "fieldIndex": true,
+    "tokenizer" : {
+        "class" : "org.lemurproject.galago.core.parse.TagTokenizer",
+        "fields"  : ["title", "text"]
+    },    
+    "distrib"   : 40,
+    "mem"       : "2g",
+    "mode" : "slurm",
+    "port" : 8000,
+    "server" : true,
+    "stemmedPostings" : false,
+    "nonStemmedPostings" : true
+
+} 

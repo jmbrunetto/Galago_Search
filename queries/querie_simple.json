@@ -1,0 +1,25 @@
+  {
+     "index" : "/home/brunetto/Documentos/IR/galago-3.14159/IndexFolder/",
+     "processingModel" : "org.lemurproject.galago.core.retrieval.processing.TwoPassDocumentPassageModel",
+     "requested" : 100,
+     "showNoResults" : true,
+     "trec" : true,
+     "systemName" : "jonas_brunetto",
+     "casefold" : true,
+     "queryType" : "complex",
+
+     "queries" : [
+
+		{	"number" : "141",
+			"text"   : "carta-bomba kiesbauer encontrar información explosión carta-bomba estudio presentadora canal televisión pro7 arabella kiesbauer"
+		},
+		{	"number" : "142",
+			"text"   : "#root( #text:carta() #text:bomba() #text:kiesbauer() )"
+		}
+	 ]
+  }
+
+
+
+
+
